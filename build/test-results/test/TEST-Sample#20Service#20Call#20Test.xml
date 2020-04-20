@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Sample Service Call Test" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-04-19T20:12:12" hostname="Ks-MacBook-Pro" time="0.072">
+  <properties/>
+  <testcase name="Verify Successful Service Call" classname="Sample Service Call Test" time="0.072">
+    <failure message="io.cucumber.java.PendingException: TODO: implement me" type="io.cucumber.java.PendingException">io.cucumber.java.PendingException: TODO: implement me
+	at com.kdrtut.stepdefs.StepdefsIntegration.service_call_is_made(StepdefsIntegration.java:11)
+	at ✽.&quot;GET&quot; service call is made(file:///Users/khadeer/IdeaProjects/restassuredtut/src/test/resources/features/sample-test.feature:4)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
