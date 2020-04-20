@@ -68,11 +68,11 @@ public class StepdefIntegration {
 
     @And("response body contains page number")
     public void response_body_contains_page_number(DataTable respBody) {
-        request.validateResponseBody(respBody);
+        request.validateResponseOfInteger(respBody);
     }
 
     @And("response body contains")
     public void response_body_contains(DataTable respBody) {
-        request.validateResponseBody(respBody);
+        request.validateResponseOfString(respBody);
     }
 }

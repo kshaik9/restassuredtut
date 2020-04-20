@@ -7,7 +7,7 @@ Feature: Sample Service Call Test
     When request has no payload
     When call to "/api/users?page=2" is made
     Then response code should be 200
-    And response body contains
+    And response body contains page number
       |page|2|
 
   Scenario:  Verify POST call creates new user
@@ -21,5 +21,4 @@ Feature: Sample Service Call Test
     When response code should be 201
     And response body contains
       |name|morpheus|
-      |job |leader  |
-      |id  |955     |
+      |job |author  |

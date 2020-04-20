@@ -21,5 +21,4 @@ Feature: Sample Service Call Test
     When response code should be 201
     And response body contains
       |name|morpheus|
-      |job |leader  |
-      |id  |955     |
+      |job |author  |

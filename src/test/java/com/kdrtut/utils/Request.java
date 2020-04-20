@@ -32,14 +32,25 @@ public class Request {
         return response.getStatusCode();
     }
 
-    public void validateResponseBody(DataTable respBody) {
+    public void validateResponseOfInteger(DataTable respBody) {
         Map<String, String> bodyMap = respBody.asMap(String.class, String.class);
         Set<Map.Entry<String, String>> entries = bodyMap.entrySet();
         Iterator<Map.Entry<String, String>> itr = entries.iterator();
 
         while(itr.hasNext()) {
             Map.Entry<String, String> expResp = itr.next();
-            response.then().body(expResp.getKey(), equalTo((Integer.valueOf(expResp.getValue())) ));
+            response.then().body(expResp.getKey(), equalTo(Integer.valueOf(expResp.getValue())));
+        }
+    }
+
+    public void validateResponseOfString(DataTable respBody) {
+        Map<String, String> bodyMap = respBody.asMap(String.class, String.class);
+        Set<Map.Entry<String, String>> entries = bodyMap.entrySet();
+        Iterator<Map.Entry<String, String>> itr = entries.iterator();
+
+        while(itr.hasNext()) {
+            Map.Entry<String, String> expResp = itr.next();
+            response.then().body(expResp.getKey(), equalTo(expResp.getValue()));
         }
     }
 }
