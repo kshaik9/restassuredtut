@@ -3,6 +3,7 @@ package com.kdrtut.stepdefs;
 import com.kdrtut.config.RequestConfig;
 import com.kdrtut.utils.Request;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
@@ -63,5 +64,15 @@ public class StepdefIntegration {
     @Then("response code should be {int}")
     public void response_code_should_be(int respCode) {
         Assert.assertEquals(respCode, request.getResponseCode());
+    }
+
+    @And("response body contains page number")
+    public void response_body_contains_page_number(DataTable respBody) {
+        request.validateResponseBody(respBody);
+    }
+
+    @And("response body contains")
+    public void response_body_contains(DataTable respBody) {
+        request.validateResponseBody(respBody);
     }
 }

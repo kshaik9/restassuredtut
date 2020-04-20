@@ -5,10 +5,10 @@ Feature: Sample Service Call Test
     When headers has below data
       |Content-Type|application/json|
     When request has no payload
-#      |name|morpheus|
-#      |job |author  |
     When call to "/api/users?page=2" is made
     Then response code should be 200
+    And response body contains
+      |page|2|
 
   Scenario:  Verify POST call creates new user
     Given "POST" service call to "https://reqres.in"
@@ -19,3 +19,7 @@ Feature: Sample Service Call Test
       |job |author  |
     When call to "/api/users" is made
     When response code should be 201
+    And response body contains
+      |name|morpheus|
+      |job |leader  |
+      |id  |955     |
