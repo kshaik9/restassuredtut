@@ -3,6 +3,8 @@ package com.kdrtut.stepdefs;
 import com.kdrtut.config.RequestConfig;
 import com.kdrtut.utils.Request;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,6 +21,11 @@ public class StepdefIntegration {
     Request request = new Request();
     Map<String, String> headers = new HashMap<>();
     JSONObject payload = new JSONObject();
+
+    @Before
+    public void setUp() {
+
+    }
 
     @Given("{string} service call to {string}")
     public void service_call_is_made(String method, String host) {
@@ -42,7 +49,6 @@ public class StepdefIntegration {
     public void request_has_below_payload(DataTable requestBody) {
         if(requestBody!=null) {
             Map<Object, Object> bodyObjs = requestBody.asMap(String.class, String.class);
-
             Set<Map.Entry<Object, Object>> entries = bodyObjs.entrySet();
 
             Iterator<Map.Entry<Object, Object>> itr = entries.iterator();
@@ -56,9 +62,9 @@ public class StepdefIntegration {
 
     @When("call to {string} is made")
     public void call_to_request_is_made(String baseUrl) {
-        requestConfig.setBaseUrl(baseUrl);
+        requestConfig.setBasePath(baseUrl);
         request.callTo(requestConfig.getHeaders(), requestConfig.getPayload(),
-                requestConfig.getMethod(), requestConfig.getHost(), requestConfig.getBaseUrl());
+                requestConfig.getMethod(), requestConfig.getHost(), requestConfig.getBasePath());
     }
 
     @Then("response code should be {int}")
@@ -66,13 +72,13 @@ public class StepdefIntegration {
         Assert.assertEquals(respCode, request.getResponseCode());
     }
 
-    @And("response body contains page number")
-    public void response_body_contains_page_number(DataTable respBody) {
-        request.validateResponseOfInteger(respBody);
-    }
-
     @And("response body contains")
     public void response_body_contains(DataTable respBody) {
-        request.validateResponseOfString(respBody);
+        request.validateResponseBody(respBody);
+    }
+
+    @After
+    public void tearDown() {
+
     }
 }

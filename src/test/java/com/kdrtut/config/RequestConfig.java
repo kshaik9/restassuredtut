@@ -8,7 +8,7 @@ public class RequestConfig {
     Map<String, String> headers;
     String payload;
     String host;
-    String baseUrl;
+    String basePath;
     String method;
 
     public String getMethod() {
@@ -27,12 +27,12 @@ public class RequestConfig {
         this.host = host;
     }
 
-    public String getBaseUrl() {
-        return baseUrl;
+    public String getBasePath() {
+        return basePath;
     }
 
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
+    public void setBasePath(String basePath) {
+        this.basePath = basePath;
     }
 
     public Map<String, String> getHeaders() {

@@ -4,15 +4,16 @@ import io.cucumber.datatable.DataTable;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
-import static org.hamcrest.Matchers.equalTo;
+import org.hamcrest.Matchers;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import static org.hamcrest.Matchers.*;
+
 public class Request {
-    RequestSpecification request = RestAssured.given();
+    RequestSpecification request = RestAssured.given().log().all();
     Response response;
 
     public void callTo(Map<String, String> headers, String payload, String method, String host, String baseUrl) {
@@ -32,25 +33,27 @@ public class Request {
         return response.getStatusCode();
     }
 
-    public void validateResponseOfInteger(DataTable respBody) {
-        Map<String, String> bodyMap = respBody.asMap(String.class, String.class);
-        Set<Map.Entry<String, String>> entries = bodyMap.entrySet();
-        Iterator<Map.Entry<String, String>> itr = entries.iterator();
+    public void validateResponseBody(DataTable respBody) {
+        Map<String, Object> bodyMap = respBody.asMap(String.class, String.class);
+        Set<Map.Entry<String, Object>> entries = bodyMap.entrySet();
+        Iterator<Map.Entry<String, Object>> itr = entries.iterator();
 
         while(itr.hasNext()) {
-            Map.Entry<String, String> expResp = itr.next();
-            response.then().body(expResp.getKey(), equalTo(Integer.valueOf(expResp.getValue())));
-        }
-    }
+            Map.Entry<String, Object> expResp = itr.next();
+            Integer keyValue = 0;
 
-    public void validateResponseOfString(DataTable respBody) {
-        Map<String, String> bodyMap = respBody.asMap(String.class, String.class);
-        Set<Map.Entry<String, String>> entries = bodyMap.entrySet();
-        Iterator<Map.Entry<String, String>> itr = entries.iterator();
+            try {
+                keyValue = Integer.valueOf(expResp.getValue().toString());
+            } catch(Exception e) {
+                System.out.println(e.fillInStackTrace());
+            }
 
-        while(itr.hasNext()) {
-            Map.Entry<String, String> expResp = itr.next();
-            response.then().body(expResp.getKey(), equalTo(expResp.getValue()));
+            if(keyValue > 0) {
+                response.then().body(expResp.getKey(), equalTo(keyValue));
+            } else {
+                response.then().body(expResp.getKey(), equalTo(expResp.getValue()));
+            }
+
         }
     }
 }
