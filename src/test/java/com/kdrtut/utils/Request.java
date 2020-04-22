@@ -29,7 +29,7 @@ public class Request {
         }
     }
 
-    public int getResponseCode() {
+    public int validateRespCode() {
         return response.getStatusCode();
     }
 

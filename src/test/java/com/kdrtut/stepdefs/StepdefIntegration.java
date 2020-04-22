@@ -69,7 +69,7 @@ public class StepdefIntegration {
 
     @Then("response code should be {int}")
     public void response_code_should_be(int respCode) {
-        Assert.assertEquals(respCode, request.getResponseCode());
+        Assert.assertEquals(respCode, request.validateRespCode());
     }
 
     @And("response body contains")
