@@ -34,26 +34,24 @@ public class Request {
     }
 
     public void validateResponseBody(DataTable respBody) {
-        Map<String, Object> bodyMap = respBody.asMap(String.class, String.class);
+        Map<String, Object> bodyMap = respBody.asMap(String.class, Object.class);
         Set<Map.Entry<String, Object>> entries = bodyMap.entrySet();
         Iterator<Map.Entry<String, Object>> itr = entries.iterator();
 
         while(itr.hasNext()) {
             Map.Entry<String, Object> expResp = itr.next();
-            Integer keyValue = 0;
-
+            Object keyValue = expResp.getValue();
             try {
-                keyValue = Integer.valueOf(expResp.getValue().toString());
+                double d= Double.parseDouble(keyValue.toString());
+                if(d==(int)d) {
+                    response.then().body(expResp.getKey(), comparesEqualTo(Double.valueOf(d).intValue()));
+                } else {
+                    response.then().body(expResp.getKey(), comparesEqualTo(d));
+                }
             } catch(Exception e) {
                 System.out.println(e.fillInStackTrace());
-            }
-
-            if(keyValue > 0) {
-                response.then().body(expResp.getKey(), equalTo(keyValue));
-            } else {
                 response.then().body(expResp.getKey(), equalTo(expResp.getValue()));
             }
-
         }
     }
 }
