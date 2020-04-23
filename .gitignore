@@ -109,3 +109,6 @@ build/*
 /api/build
 /qa/build
 /build
+
+# files
+*.html
