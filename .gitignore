@@ -95,11 +95,15 @@ atlassian-ide-plugin.xml
 
 ## target folder at the top level of the project structue and paths and contents underneath it
 target/
+build/
 target/*
+build/*
 
 ## target folder at any level of the project structue
 **/target
+**/build
 /target
+/build
 
 # build
 /api/build
