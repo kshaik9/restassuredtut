@@ -100,3 +100,4 @@ atlassian-ide-plugin.xml
 # build
 /api/build
 /qa/build
+/build
