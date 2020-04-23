@@ -1,13 +1,27 @@
 package com.kdrtut.controller;
 
+import com.kdrtut.service.BooksService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 public class BooksController {
 
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "<center><h2>Hello, this Books Directory using Spring-boot!</h2></center>";
+    @Autowired
+    private BooksService booksService;
+
+    @GetMapping(value = "/books")
+    public List<Books> getBooks() {
+        return booksService.getBooks();
+    }
+
+    @GetMapping(value = "/books/{bookid}")
+    public Books getBook(@PathVariable int bookid) {
+        return booksService.getBookById(bookid);
     }
 }
