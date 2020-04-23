@@ -95,7 +95,8 @@ atlassian-ide-plugin.xml
 
 # Report
 /target
-/qa/target
+qa/target
+qa/target/report
 
 # build
 /api/build
