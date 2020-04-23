@@ -95,14 +95,18 @@ atlassian-ide-plugin.xml
 
 ## target folder at the top level of the project structue and paths and contents underneath it
 target/
+qa/target
 build/
 target/*
+qa/target/*
 build/*
 
 ## target folder at any level of the project structue
 **/target
+**/qa/target
 **/build
 /target
+/qa/target
 /build
 
 # build
