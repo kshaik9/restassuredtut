@@ -1,10 +1,10 @@
 package com.kdrtut.controller;
 
+import com.kdrtut.model.Books;
 import com.kdrtut.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController

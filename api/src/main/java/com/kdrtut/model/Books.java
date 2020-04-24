@@ -1,4 +1,4 @@
-package com.kdrtut.controller;
+package com.kdrtut.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

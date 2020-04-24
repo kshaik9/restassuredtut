@@ -1,11 +1,13 @@
 package com.kdrtut.service;
 
-import com.kdrtut.controller.Books;
+import com.kdrtut.model.Books;
 import com.kdrtut.dao.BooksDao;
+import com.kdrtut.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BooksService {
@@ -18,7 +20,11 @@ public class BooksService {
     }
 
     public Books getBookById(int bookId) {
-        return booksDao.findById(bookId).get();
+        Optional<Books> optionalBooks = booksDao.findById(bookId);
+        if(!optionalBooks.isPresent()) {
+            throw new NotFoundException("Sorry, there is no book associated with the id " + bookId + "!");
+        }
+        return optionalBooks.get();
     }
 
     public Books addNewBook(Books book) {

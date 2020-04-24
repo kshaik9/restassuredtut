@@ -1,6 +1,6 @@
 package com.kdrtut.dao;
 
-import com.kdrtut.controller.Books;
+import com.kdrtut.model.Books;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
