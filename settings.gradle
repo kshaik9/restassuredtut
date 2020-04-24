@@ -1,2 +1,4 @@
 rootProject.name = 'restassuredtut'
+include 'api'
+include 'qa'
 
